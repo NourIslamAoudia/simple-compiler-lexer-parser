@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEDIVIDE LPAREN MINUS NUMBER PLUS RPAREN TIMESexpression : expression PLUS term\n                  | expression MINUS term\n                  | termterm : term TIMES factor\n            | term DIVIDE factor\n            | factorfactor : NUMBER\n              | LPAREN expression RPARENexpression : LPAREN expression RPARENexpression : NUMBER'
+_lr_signature = 'leftORleftANDleftEQNEleftLTLEGTGEleftPLUSMINUSleftTIMESDIVIDErightNOTAND DIVIDE EQ FALSE GE GT LE LPAREN LT MINUS NE NOT NUMBER OR PLUS RPAREN TIMES TRUEexpression : expression PLUS term\n                  | expression MINUS term\n                  | termterm : term TIMES factor\n            | term DIVIDE factor\n            | factorexpression : expression AND expression\n                  | expression OR expression\n                  | NOT expressionexpression : expression LT expression\n                  | expression LE expression\n                  | expression GT expression\n                  | expression GE expression\n                  | expression EQ expression\n                  | expression NE expressionfactor : NUMBER\n              | LPAREN expression RPAREN\n              | booleanboolean : TRUE\n               | FALSEexpression : LPAREN expression RPARENexpression : NUMBER'
     
-_lr_action_items = {'LPAREN':([0,3,6,7,8,9,13,],[3,3,13,13,13,13,3,]),'NUMBER':([0,3,6,7,8,9,13,],[4,4,12,12,12,12,4,]),'$end':([1,2,4,5,11,12,14,15,16,17,19,],[0,-3,-7,-6,-1,-7,-2,-4,-5,-8,-8,]),'PLUS':([1,2,4,5,10,11,12,14,15,16,17,18,19,],[6,-3,-7,-6,6,-1,-7,-2,-4,-5,-8,6,-8,]),'MINUS':([1,2,4,5,10,11,12,14,15,16,17,18,19,],[7,-3,-7,-6,7,-1,-7,-2,-4,-5,-8,7,-8,]),'RPAREN':([2,4,5,10,11,12,14,15,16,17,18,19,],[-3,-7,-6,17,-1,-7,-2,-4,-5,-8,19,-8,]),'TIMES':([2,4,5,11,12,14,15,16,17,19,],[8,-7,-6,8,-7,8,-4,-5,-8,-8,]),'DIVIDE':([2,4,5,11,12,14,15,16,17,19,],[9,-7,-6,9,-7,9,-4,-5,-8,-8,]),}
+_lr_action_items = {'NOT':([0,3,4,12,13,14,15,16,17,18,19,26,],[3,3,3,3,3,3,3,3,3,3,3,3,]),'LPAREN':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[4,4,4,26,26,4,4,4,4,4,4,4,4,26,26,4,]),'NUMBER':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[5,5,5,25,25,5,5,5,5,5,5,5,5,25,25,5,]),'TRUE':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,]),'FALSE':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,]),'$end':([1,2,5,6,7,8,9,22,24,25,27,28,29,30,31,32,33,34,35,36,37,38,40,],[0,-3,-16,-6,-18,-19,-20,-9,-1,-16,-2,-7,-8,-10,-11,-12,-13,-14,-15,-4,-5,-17,-17,]),'PLUS':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[10,-3,-16,-6,-18,-19,-20,-9,10,-1,-16,-2,10,10,10,10,10,10,10,10,-4,-5,-17,10,-17,]),'MINUS':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[11,-3,-16,-6,-18,-19,-20,-9,11,-1,-16,-2,11,11,11,11,11,11,11,11,-4,-5,-17,11,-17,]),'AND':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[12,-3,-16,-6,-18,-19,-20,-9,12,-1,-16,-2,-7,12,-10,-11,-12,-13,-14,-15,-4,-5,-17,12,-17,]),'OR':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[13,-3,-16,-6,-18,-19,-20,-9,13,-1,-16,-2,-7,-8,-10,-11,-12,-13,-14,-15,-4,-5,-17,13,-17,]),'LT':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[14,-3,-16,-6,-18,-19,-20,-9,14,-1,-16,-2,14,14,-10,-11,-12,-13,14,14,-4,-5,-17,14,-17,]),'LE':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[15,-3,-16,-6,-18,-19,-20,-9,15,-1,-16,-2,15,15,-10,-11,-12,-13,15,15,-4,-5,-17,15,-17,]),'GT':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[16,-3,-16,-6,-18,-19,-20,-9,16,-1,-16,-2,16,16,-10,-11,-12,-13,16,16,-4,-5,-17,16,-17,]),'GE':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[17,-3,-16,-6,-18,-19,-20,-9,17,-1,-16,-2,17,17,-10,-11,-12,-13,17,17,-4,-5,-17,17,-17,]),'EQ':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[18,-3,-16,-6,-18,-19,-20,-9,18,-1,-16,-2,18,18,-10,-11,-12,-13,-14,-15,-4,-5,-17,18,-17,]),'NE':([1,2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[19,-3,-16,-6,-18,-19,-20,-9,19,-1,-16,-2,19,19,-10,-11,-12,-13,-14,-15,-4,-5,-17,19,-17,]),'RPAREN':([2,5,6,7,8,9,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[-3,-16,-6,-18,-19,-20,-9,38,-1,-16,-2,-7,-8,-10,-11,-12,-13,-14,-15,-4,-5,-17,40,-17,]),'TIMES':([2,5,6,7,8,9,24,25,27,36,37,38,40,],[20,-16,-6,-18,-19,-20,20,-16,20,-4,-5,-17,-17,]),'DIVIDE':([2,5,6,7,8,9,24,25,27,36,37,38,40,],[21,-16,-6,-18,-19,-20,21,-16,21,-4,-5,-17,-17,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,3,13,],[1,10,18,]),'term':([0,3,6,7,13,],[2,2,11,14,2,]),'factor':([0,3,6,7,8,9,13,],[5,5,5,5,15,16,5,]),}
+_lr_goto_items = {'expression':([0,3,4,12,13,14,15,16,17,18,19,26,],[1,22,23,28,29,30,31,32,33,34,35,39,]),'term':([0,3,4,10,11,12,13,14,15,16,17,18,19,26,],[2,2,2,24,27,2,2,2,2,2,2,2,2,2,]),'factor':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[6,6,6,6,6,6,6,6,6,6,6,6,6,36,37,6,]),'boolean':([0,3,4,10,11,12,13,14,15,16,17,18,19,20,21,26,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,14 +27,26 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression PLUS term','expression',3,'p_expression_binop','parser.py',12),
-  ('expression -> expression MINUS term','expression',3,'p_expression_binop','parser.py',13),
-  ('expression -> term','expression',1,'p_expression_binop','parser.py',14),
-  ('term -> term TIMES factor','term',3,'p_term','parser.py',24),
-  ('term -> term DIVIDE factor','term',3,'p_term','parser.py',25),
-  ('term -> factor','term',1,'p_term','parser.py',26),
-  ('factor -> NUMBER','factor',1,'p_factor','parser.py',36),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',37),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','parser.py',44),
-  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',48),
+  ('expression -> expression PLUS term','expression',3,'p_expression_binop','parser.py',17),
+  ('expression -> expression MINUS term','expression',3,'p_expression_binop','parser.py',18),
+  ('expression -> term','expression',1,'p_expression_binop','parser.py',19),
+  ('term -> term TIMES factor','term',3,'p_term','parser.py',29),
+  ('term -> term DIVIDE factor','term',3,'p_term','parser.py',30),
+  ('term -> factor','term',1,'p_term','parser.py',31),
+  ('expression -> expression AND expression','expression',3,'p_expression_logical','parser.py',46),
+  ('expression -> expression OR expression','expression',3,'p_expression_logical','parser.py',47),
+  ('expression -> NOT expression','expression',2,'p_expression_logical','parser.py',48),
+  ('expression -> expression LT expression','expression',3,'p_expression_comparison','parser.py',59),
+  ('expression -> expression LE expression','expression',3,'p_expression_comparison','parser.py',60),
+  ('expression -> expression GT expression','expression',3,'p_expression_comparison','parser.py',61),
+  ('expression -> expression GE expression','expression',3,'p_expression_comparison','parser.py',62),
+  ('expression -> expression EQ expression','expression',3,'p_expression_comparison','parser.py',63),
+  ('expression -> expression NE expression','expression',3,'p_expression_comparison','parser.py',64),
+  ('factor -> NUMBER','factor',1,'p_factor','parser.py',79),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',80),
+  ('factor -> boolean','factor',1,'p_factor','parser.py',81),
+  ('boolean -> TRUE','boolean',1,'p_boolean','parser.py',88),
+  ('boolean -> FALSE','boolean',1,'p_boolean','parser.py',89),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','parser.py',93),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',97),
 ]
