@@ -3,17 +3,8 @@ import ply.lex as lex
 # Liste des tokens
 tokens = (
     'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
-    'LPAREN', 'RPAREN','AND',   
-    'OR', 
-    'NOT',  
-    'LT',  
-    'LE',   
-    'GT',   
-    'GE',  
-    'EQ',    
-    'NE',   
-    'TRUE',  
-    'FALSE', 
+    'LPAREN', 'RPAREN','AND',   'OR', 'NOT',  'LT',  
+    'LE',   'GT',   'GE',  'EQ',    'NE',   'TRUE',  'FALSE', 
 )
 
 # Règles de lexing
