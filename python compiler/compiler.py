@@ -15,9 +15,14 @@ def analyze_expression(expression):
 
 # Exemple d'utilisation
 if __name__ == "__main__":
-
+    analyze_expression("2 + 3 * 4 - 5") # Doit afficher 9
+    print("----------------------------------------")
+    analyze_expression("2 * (3+4) - 6") # Doit afficher 8
+    print("----------------------------------------")
+    analyze_expression("6 / 2 + 2") # Doit afficher 5
+    print("----------------------------------------")
     analyze_expression("2 > 1")
     print("----------------------------------------")
-    analyze_expression("(2 < 1) && (3 < 4)")
+    analyze_expression("(2 i 1) && (3 < 4)")
     print("----------------------------------------")
     analyze_expression("!0")
