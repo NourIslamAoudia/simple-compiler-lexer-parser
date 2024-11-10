@@ -15,5 +15,9 @@ def analyze_expression(expression):
 
 # Exemple d'utilisation
 if __name__ == "__main__":
-    expression = input("Entrez une expression mathématique: ")
-    analyze_expression(expression)
+
+    analyze_expression("2 > 1")
+    print("----------------------------------------")
+    analyze_expression("(2 < 1) && (3 < 4)")
+    print("----------------------------------------")
+    analyze_expression("!0")
