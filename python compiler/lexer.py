@@ -1,37 +1,48 @@
-# lexer.py
 import ply.lex as lex
 
 # Liste des tokens
 tokens = (
-    'NUMBER', 'PLUS', 'TIMES', 'LPAREN', 'RPAREN', 'MINUS',
+    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
+    'LPAREN', 'RPAREN'
 )
 
-# Expression régulière pour chaque token
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_NUMBER = r'\d+'
+# Règles de lexing
+t_PLUS    = r'\+'
+t_MINUS   = r'-'
+t_TIMES   = r'\*'
+t_DIVIDE  = r'/'    
+t_LPAREN  = r'\('
+t_RPAREN  = r'\)'
 
-# Ignorer les espaces et tabulations
+# Règle pour les nombres
+def t_NUMBER(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+# Ignorer les espaces et les tabulations
 t_ignore = ' \t'
 
-# Gérer les erreurs
+# Règle pour gérer les retours à la ligne
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+# Gérer les erreurs de lexing
 def t_error(t):
     print(f"Caractère illégal '{t.value[0]}'")
     t.lexer.skip(1)
 
-# Construire le lexer
+# Créer le lexer
 lexer = lex.lex()
 
-# Fonction pour analyser le texte et renvoyer les tokens
-def tokenize(data):
-    lexer.input(data)
+# Fonction pour récupérer tous les tokens d'une expression
+def get_tokens(input_data):
+    lexer.input(input_data)
     tokens_list = []
     while True:
-        token = lexer.token()
-        if not token:
+        tok = lexer.token()
+        if not tok:
             break
-        tokens_list.append(token)
+        tokens_list.append((tok.type, tok.value))
     return tokens_list
