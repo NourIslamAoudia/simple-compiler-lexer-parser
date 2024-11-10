@@ -1,18 +1,19 @@
-# main.py
-from lexer import tokenize
+from lexer import get_tokens
 from parser import parse_expression
 
-def main():
-    data =input("Entrez une expression arithmétique: ")
-    # Utiliser le lexeur pour découper l'entrée en tokens
-    print("Tokens:")
-    tokens = tokenize(data)
+# Fonction principale pour analyser une expression
+def analyze_expression(expression):
+    print("Tokens générés :")
+    tokens = get_tokens(expression)
     for token in tokens:
-        print(f"Type: {token.type}, Valeur: {token.value}")
+        print(f"Type: {token[0]}, Valeur: {token[1]}")
 
-    # Utiliser le parser pour analyser l'expression
-    result = parse_expression(data)
-    print(f"Résultat de l'évaluation : {result}")
+    # Analyser l'expression et obtenir le résultat
+    result = parse_expression(expression)
+    print("\nRésultat de l'évaluation :")
+    print(result)
 
-if __name__ == '__main__':
-    main()
+# Exemple d'utilisation
+if __name__ == "__main__":
+    expression = input("Entrez une expression mathématique: ")
+    analyze_expression(expression)
