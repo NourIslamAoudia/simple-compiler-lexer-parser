@@ -1,2 +1,9 @@
+VAR_GLOBAL {
+}
 
-1<2 || 10>10
+DECLARATION {
+}
+
+INSTRUCTION {
+    2+4
+}
