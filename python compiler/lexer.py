@@ -1,13 +1,14 @@
 import ply.lex as lex
 
-# Liste des tokens
+# Existing tokens remain the same
 tokens = (
     'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'LPAREN', 'RPAREN','AND',   'OR', 'NOT',  'LT',  
     'LE',   'GT',   'GE',  'EQ',    'NE',   'TRUE',  'FALSE', 
+    'COMMENT',  # New token for comments
 )
 
-# Règles de lexing
+# Existing rules remain the same
 t_PLUS    = r'\+'
 t_MINUS   = r'-'
 t_TIMES   = r'\*'
@@ -25,29 +26,32 @@ t_GE  = r'>='
 t_EQ  = r'=='
 t_NE  = r'!='
 
-# Règle pour les nombres
+# Rule for comments
+def t_COMMENT(t):
+    r'%%.*'
+    t.type = 'COMMENT'
+    return t
+
+# Existing rules continue...
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-# Ignorer les espaces et les tabulations
+# Ignore comments and whitespace
 t_ignore = ' \t'
 
-# Règle pour gérer les retours à la ligne
+# Existing error and utility functions remain the same
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-# Gérer les erreurs de lexing
 def t_error(t):
     print(f"Caractère illégal '{t.value[0]}'")
     t.lexer.skip(1)
 
-# Créer le lexer
 lexer = lex.lex()
 
-# Fonction pour récupérer tous les tokens d'une expression
 def get_tokens(input_data):
     lexer.input(input_data)
     tokens_list = []
@@ -55,5 +59,7 @@ def get_tokens(input_data):
         tok = lexer.token()
         if not tok:
             break
-        tokens_list.append((tok.type, tok.value))
+        # Skip comment tokens
+        if tok.type != 'COMMENT':
+            tokens_list.append((tok.type, tok.value))
     return tokens_list
