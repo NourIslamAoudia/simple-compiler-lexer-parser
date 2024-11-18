@@ -93,7 +93,8 @@ def p_comparison_expression(p):
 
 # Gestion des erreurs de syntaxe
 def p_error(p):
-    print(f"Erreur de syntaxe !" if p is None else f"Erreur de syntaxe à la position {p.lexpos} : {p.value}")
+    if p != None:
+        print(f"Erreur de syntaxe à la position {p.lexpos} : {p.value}")
 # Construire l'analyseur
 parser = yacc.yacc()
 

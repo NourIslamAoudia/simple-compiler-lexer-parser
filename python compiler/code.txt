@@ -1,9 +1,10 @@
 VAR_GLOBAL {
+    trrrr
 }
-
 DECLARATION {
+    prrrrrr
+    foor
 }
-
 INSTRUCTION {
-    2+4
+1+1
 }
