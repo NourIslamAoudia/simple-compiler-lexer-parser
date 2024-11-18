@@ -89,26 +89,11 @@ def p_comparison_expression(p):
     elif p[2] == '!=':
         p[0] = 1 if p[1] != p[3] else 0
 
-def p_expression_ignore_comment(p):
-    '''expression : expression COMMENT
-                  | COMMENT expression
-                  | COMMENT'''
-    if len(p) == 3:
-        # Si le commentaire est avant ou après une expression
-        p[0] = p[1] if p[1] != 'COMMENT' else p[2]
-    elif len(p) == 2:
-        # Si c'est juste un commentaire
-        p[0] = None
+
 
 # Gestion des erreurs de syntaxe
 def p_error(p):
-    if p and p.type == 'COMMENT':
-        # Ignorer simplement les tokens de commentaire
-        return
-    if p:
-        print(f"Erreur de syntaxe! Token: {p.type}, Valeur: {p.value}")
-    else:
-        print("Erreur de syntaxe à la fin de l'expression")
+    print(f"Erreur de syntaxe !" if p is None else f"Erreur de syntaxe à la position {p.lexpos} : {p.value}")
 # Construire l'analyseur
 parser = yacc.yacc()
 

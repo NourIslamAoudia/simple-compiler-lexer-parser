@@ -51,15 +51,3 @@ def t_error(t):
     t.lexer.skip(1)
 
 lexer = lex.lex()
-
-def get_tokens(input_data):
-    lexer.input(input_data)
-    tokens_list = []
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        # Skip comment tokens
-        if tok.type != 'COMMENT':
-            tokens_list.append((tok.type, tok.value))
-    return tokens_list
